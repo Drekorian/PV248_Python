@@ -12,6 +12,7 @@ class TestParseKarma(unittest.TestCase):
 		del ircbot.KARMA
 
 	def test_FOO(self):
+		self.assertFalse(ircbot.KARMA.has_key("foo"))
 		ircbot.parse("foo++")
 		self.assertEqual(ircbot.KARMA["foo"], 1)
 		self.assertTrue("foo" in ircbot.KARMA)

@@ -1,7 +1,15 @@
 #!/usr/bin/python
 
 """
-Hello what does this do?.
+This module is a mockup of a IRC bot. When executed, it runs an endless loop
+that can be interrupted with EOF keystroke or interrupt keystroke. Bot is
+capable of handling commands and filters.
+
+@author: Marek Osvald
+@version: 2012.1101
+@since: 2012.0921
+
+@undocumented: __package__
 """
 
 import re
@@ -43,6 +51,7 @@ def cmd_word_count(msg):
 	Returns the number of received words so far.
 
 	@param msg: message associated with the command
+	@type msg: str
 	@return: "state withe the message 'Actual word count is <number> words'
 	@rtype: str
 	"""
@@ -53,6 +62,7 @@ def cmd_karma(user):
 	Returns a state with number of karma points for given user.
 
 	@param user: user whose karma is queried
+	@type user: str
 	@return: done state with message '<user> has <number> points of karma'"
 	@rtype: state
 	"""
@@ -76,6 +86,7 @@ def f_word_count(msg):
 	Filter that adds the number of words in processed message.
 
 	@param msg: message to be parsed
+	@type msg: str
 	@return next state with the original message
 	@rtype: state
 	"""
@@ -89,6 +100,8 @@ def f_karma(msg):
 	it calls the change_karma function. Depending whether the command is valid,
 	returns either done state or next state with appropriate message.
 
+	@param msg: message to be filtered
+	@type msg: str
 	@return: done state if the information is done parsing
 	@rtype: state
 	@raise Exception: in case that change_karma return other than done or next
@@ -154,11 +167,19 @@ def write(arg):
 	Write (send) argument to output.
 
 	@param arg: text to be written to the output
-	@type arg: str
+	@return: None
+	@rtype: None
 	"""
 	print(arg)
 
 def parse(msg):
+	"""
+	Parses given input.
+
+	@param msg: input message to parse
+	@return: return message processed with associated commands and filters
+	@rtype: str
+	"""
 	try:
 		cmd, args = msg.split(" ", 1)
 	except ValueError:
@@ -171,7 +192,7 @@ def parse(msg):
 		if state.is_done(ret):
 			return ret.value
 		elif state.is_next(ret):
-			pass #FIXME: continue processing?
+			pass
 		else:
 			raise Exception('Illegal state of command.')
 

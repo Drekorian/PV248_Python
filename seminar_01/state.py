@@ -1,23 +1,78 @@
-# processing states for the main process queue
+"""
+This module describes processing states for the main process queue.
+
+@author: Daniel Mach
+@author: Martin Sivak
+@author: Marek Osvald
+@version: 2012.1101
+@since: 2012.0921
+
+@undocumented: __package__, object.__new__
+"""
 
 class state(object):
-    def __init__(self, value = None):
-        self.value = value
+	"""
+	Class representing common parsing state.
+
+	@undocumented: __new__
+	"""
+	def __init__(self, value = None):
+		"""
+		Parametric constructor. Initializes state with given value.
+
+		@param value: value associated with the state, optional, default None
+		"""
+		self.value = value
 
 class done(state):
-    pass
+	"""
+	Class representing that the message is done being parsed.
+	"""
+	pass
 
 class next(state):
-    pass
+	"""
+	Class representing that the message should be processed by next command or
+	filter.
+	"""
+	pass
 
 class replace(state):
-    pass
+	"""
+	Class representing that the message or part of the message has been
+	replaced.
+	"""
+	pass
 
 def is_done(o):
-    return isinstance(o, done)
+	"""
+	Returns True if the state is done, False otherwise.
+
+	@param o: state to check
+	@type o: object
+	@return: True if the state is done, False otherwise
+	@rtype: bool
+	"""
+	return isinstance(o, done)
 
 def is_next(o):
-    return isinstance(o, next)
+	"""
+	Returns True if the state is next, False otherwise.
+
+	@param o: state to check
+	@type o: object
+	@return: True if the state is next, False otherwise
+	@rtype: bool
+	"""
+	return isinstance(o, next)
 
 def is_replace(o):
-    return isinstance(o, replace)
+	"""
+	Returns True if the state is replace, False otherwise.
+
+	@param o: state to check
+	@type o: object
+	@return: True if the state is replace, False otherwise
+	@rtype: bool
+	"""
+	return isinstance(o, replace)

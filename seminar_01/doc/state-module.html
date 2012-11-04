@@ -40,8 +40,6 @@
     <td>
       <table cellpadding="0" cellspacing="0">
         <!-- hide/show private -->
-        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
-    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
         <tr><td align="right"><span class="options"
             >[<a href="frames.html" target="_top">frames</a
             >]&nbsp;|&nbsp;<a href="state-module.html"
@@ -52,49 +50,63 @@
 </table>
 <!-- ==================== MODULE DESCRIPTION ==================== -->
 <h1 class="epydoc">Module state</h1><p class="nomargin-top"><span class="codelink"><a href="state-pysrc.html">source&nbsp;code</a></span></p>
-<!-- ==================== CLASSES ==================== -->
+<p>This module describes processing states for the main process 
+  queue.</p>
+
+<hr />
+<div class="fields">      <dl><dt>Authors:</dt>
+        <dd>
+          Daniel Mach,
+          Martin Sivak,
+          Marek Osvald
+        </dd>
+      </dl>
+      <p><strong>Version:</strong>
+        2012.1101
+      </p>
+      <p><strong>Since:</strong>
+        2012.0921
+      </p>
+</div><!-- ==================== CLASSES ==================== -->
 <a name="section-Classes"></a>
 <table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr bgcolor="#70b0f0" class="table-header">
-  <td colspan="2" class="table-header">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-      <tr valign="top">
-        <td align="left"><span class="table-header">Classes</span></td>
-        <td align="right" valign="top"
-         ><span class="options">[<a href="#section-Classes"
-         class="privatelink" onclick="toggle_private();"
-         >hide private</a>]</span></td>
-      </tr>
-    </table>
-  </td>
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Classes</span></td>
 </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a href="state.state-class.html" class="summary-name">state</a>
+        <a href="state.state-class.html" class="summary-name">state</a><br />
+      Class representing common parsing state.
     </td>
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a href="state.done-class.html" class="summary-name">done</a>
+        <a href="state.done-class.html" class="summary-name">done</a><br />
+      Class representing that the message is done being parsed.
     </td>
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a href="state.next-class.html" class="summary-name">next</a>
+        <a href="state.next-class.html" class="summary-name">next</a><br />
+      Class representing that the message should be processed by next 
+        command or filter.
     </td>
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a href="state.replace-class.html" class="summary-name">replace</a>
+        <a href="state.replace-class.html" class="summary-name">replace</a><br />
+      Class representing that the message or part of the message has been
+        replaced.
     </td>
   </tr>
 </table>
@@ -103,25 +115,17 @@
 <table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr bgcolor="#70b0f0" class="table-header">
-  <td colspan="2" class="table-header">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-      <tr valign="top">
-        <td align="left"><span class="table-header">Functions</span></td>
-        <td align="right" valign="top"
-         ><span class="options">[<a href="#section-Functions"
-         class="privatelink" onclick="toggle_private();"
-         >hide private</a>]</span></td>
-      </tr>
-    </table>
-  </td>
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Functions</span></td>
 </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
+      <span class="summary-type">bool</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="is_done"></a><span class="summary-sig-name">is_done</span>(<span class="summary-sig-arg">o</span>)</span></td>
+          <td><span class="summary-sig"><a href="state-module.html#is_done" class="summary-sig-name">is_done</a>(<span class="summary-sig-arg">o</span>)</span><br />
+      Returns True if the state is done, False otherwise.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="state-pysrc.html#is_done">source&nbsp;code</a></span>
             
@@ -133,11 +137,12 @@
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
+      <span class="summary-type">bool</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="is_next"></a><span class="summary-sig-name">is_next</span>(<span class="summary-sig-arg">o</span>)</span></td>
+          <td><span class="summary-sig"><a href="state-module.html#is_next" class="summary-sig-name">is_next</a>(<span class="summary-sig-arg">o</span>)</span><br />
+      Returns True if the state is next, False otherwise.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="state-pysrc.html#is_next">source&nbsp;code</a></span>
             
@@ -149,11 +154,12 @@
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
+      <span class="summary-type">bool</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="is_replace"></a><span class="summary-sig-name">is_replace</span>(<span class="summary-sig-arg">o</span>)</span></td>
+          <td><span class="summary-sig"><a href="state-module.html#is_replace" class="summary-sig-name">is_replace</a>(<span class="summary-sig-arg">o</span>)</span><br />
+      Returns True if the state is replace, False otherwise.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="state-pysrc.html#is_replace">source&nbsp;code</a></span>
             
@@ -164,31 +170,91 @@
     </td>
   </tr>
 </table>
-<!-- ==================== VARIABLES ==================== -->
-<a name="section-Variables"></a>
-<table class="summary" border="1" cellpadding="3"
+<!-- ==================== FUNCTION DETAILS ==================== -->
+<a name="section-FunctionDetails"></a>
+<table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr bgcolor="#70b0f0" class="table-header">
-  <td colspan="2" class="table-header">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-      <tr valign="top">
-        <td align="left"><span class="table-header">Variables</span></td>
-        <td align="right" valign="top"
-         ><span class="options">[<a href="#section-Variables"
-         class="privatelink" onclick="toggle_private();"
-         >hide private</a>]</span></td>
-      </tr>
-    </table>
-  </td>
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Function Details</span></td>
 </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="None">None</code>
-    </td>
-  </tr>
 </table>
+<a name="is_done"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">is_done</span>(<span class="sig-arg">o</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="state-pysrc.html#is_done">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns True if the state is done, False otherwise.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>o</code></strong> (object) - state to check</li>
+    </ul></dd>
+    <dt>Returns: bool</dt>
+        <dd>True if the state is done, False otherwise</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="is_next"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">is_next</span>(<span class="sig-arg">o</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="state-pysrc.html#is_next">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns True if the state is next, False otherwise.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>o</code></strong> (object) - state to check</li>
+    </ul></dd>
+    <dt>Returns: bool</dt>
+        <dd>True if the state is next, False otherwise</dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="is_replace"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">is_replace</span>(<span class="sig-arg">o</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="state-pysrc.html#is_replace">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns True if the state is replace, False otherwise.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>o</code></strong> (object) - state to check</li>
+    </ul></dd>
+    <dt>Returns: bool</dt>
+        <dd>True if the state is replace, False otherwise</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
 <!-- ==================== NAVIGATION BAR ==================== -->
 <table class="navbar" border="0" width="100%" cellpadding="0"
        bgcolor="#a0c0ff" cellspacing="0">
@@ -212,7 +278,7 @@
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Thu Nov 01 01:23:20 2012
+    Generated by Epydoc 3.0.1 on Thu Nov 01 12:29:41 2012
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
