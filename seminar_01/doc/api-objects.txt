@@ -6,7 +6,6 @@ ircbot.f_karma	ircbot-module.html#f_karma
 ircbot.cmd_word_count	ircbot-module.html#cmd_word_count
 ircbot.WORDCOUNT	ircbot-module.html#WORDCOUNT
 ircbot.parse	ircbot-module.html#parse
-ircbot.change_karma	ircbot-module.html#change_karma
 ircbot.read	ircbot-module.html#read
 ircbot.KARMA	ircbot-module.html#KARMA
 ircbot.FILTERS	ircbot-module.html#FILTERS

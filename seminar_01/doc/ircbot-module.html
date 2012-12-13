@@ -40,6 +40,8 @@
     <td>
       <table cellpadding="0" cellspacing="0">
         <!-- hide/show private -->
+        <tr><td align="right"><span class="options">[<a href="javascript:void(0);" class="privatelink"
+    onclick="toggle_private();">hide&nbsp;private</a>]</span></td></tr>
         <tr><td align="right"><span class="options"
             >[<a href="frames.html" target="_top">frames</a
             >]&nbsp;|&nbsp;<a href="ircbot-module.html"
@@ -59,7 +61,7 @@
         Marek Osvald
       </p>
       <p><strong>Version:</strong>
-        2012.1101
+        2012.1210
       </p>
       <p><strong>Since:</strong>
         2012.0921
@@ -69,8 +71,17 @@
 <table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr bgcolor="#70b0f0" class="table-header">
-  <td align="left" colspan="2" class="table-header">
-    <span class="table-header">Functions</span></td>
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Functions</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Functions"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
 </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
@@ -78,7 +89,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="ircbot-module.html#cmd_shutdown" class="summary-sig-name">cmd_shutdown</a>(<span class="summary-sig-arg">msg</span>)</span><br />
+          <td><span class="summary-sig"><a href="ircbot-module.html#cmd_shutdown" class="summary-sig-name">cmd_shutdown</a>(<span class="summary-sig-arg">msg</span>=<span class="summary-sig-default">None</span>)</span><br />
       Raises SystemExit exception.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="ircbot-pysrc.html#cmd_shutdown">source&nbsp;code</a></span>
@@ -113,7 +124,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="ircbot-module.html#cmd_word_count" class="summary-sig-name">cmd_word_count</a>(<span class="summary-sig-arg">msg</span>)</span><br />
+          <td><span class="summary-sig"><a href="ircbot-module.html#cmd_word_count" class="summary-sig-name">cmd_word_count</a>(<span class="summary-sig-arg">msg</span>=<span class="summary-sig-default">None</span>)</span><br />
       Returns the number of received words so far.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="ircbot-pysrc.html#cmd_word_count">source&nbsp;code</a></span>
@@ -178,30 +189,12 @@
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="change_karma"></a><span class="summary-sig-name">change_karma</span>(<span class="summary-sig-arg">msg</span>,
-        <span class="summary-sig-arg">increase</span>=<span class="summary-sig-default">True</span>)</span><br />
-      Changes users karma by one.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="ircbot-pysrc.html#change_karma">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">str</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="ircbot-module.html#read" class="summary-sig-name">read</a>()</span><br />
-      Read input and return it.</td>
+          <td><span class="summary-sig"><a href="ircbot-module.html#read" class="summary-sig-name">read</a>(<span class="summary-sig-arg">read_function</span>=<span class="summary-sig-default">&lt;built-in function raw_input&gt;</span>)</span><br />
+      Reads input and return it.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="ircbot-pysrc.html#read">source&nbsp;code</a></span>
             
@@ -217,7 +210,8 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="ircbot-module.html#write" class="summary-sig-name">write</a>(<span class="summary-sig-arg">arg</span>)</span><br />
+          <td><span class="summary-sig"><a href="ircbot-module.html#write" class="summary-sig-name">write</a>(<span class="summary-sig-arg">arg</span>,
+        <span class="summary-sig-arg">write_function</span>=<span class="summary-sig-default">&lt;built-in function print&gt;</span>)</span><br />
       Write (send) argument to output.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="ircbot-pysrc.html#write">source&nbsp;code</a></span>
@@ -251,8 +245,17 @@
 <table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr bgcolor="#70b0f0" class="table-header">
-  <td align="left" colspan="2" class="table-header">
-    <span class="table-header">Variables</span></td>
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Variables"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
 </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
@@ -293,8 +296,17 @@ unt, &quot;karma&quot;: cmd_karma,}">{&quot;SHUTDOWN&quot;: cmd_shutdown, &quot;
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr bgcolor="#70b0f0" class="table-header">
-  <td align="left" colspan="2" class="table-header">
-    <span class="table-header">Function Details</span></td>
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Function Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-FunctionDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
 </tr>
 </table>
 <a name="cmd_shutdown"></a>
@@ -304,7 +316,7 @@ unt, &quot;karma&quot;: cmd_karma,}">{&quot;SHUTDOWN&quot;: cmd_shutdown, &quot;
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">cmd_shutdown</span>(<span class="sig-arg">msg</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">cmd_shutdown</span>(<span class="sig-arg">msg</span>=<span class="sig-default">None</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="ircbot-pysrc.html#cmd_shutdown">source&nbsp;code</a></span>&nbsp;
@@ -359,7 +371,7 @@ unt, &quot;karma&quot;: cmd_karma,}">{&quot;SHUTDOWN&quot;: cmd_shutdown, &quot;
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">cmd_word_count</span>(<span class="sig-arg">msg</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">cmd_word_count</span>(<span class="sig-arg">msg</span>=<span class="sig-default">None</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="ircbot-pysrc.html#cmd_word_count">source&nbsp;code</a></span>&nbsp;
@@ -370,7 +382,7 @@ unt, &quot;karma&quot;: cmd_karma,}">{&quot;SHUTDOWN&quot;: cmd_shutdown, &quot;
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>msg</code></strong> - message associated with the command</li>
+        <li><strong class="pname"><code>msg</code></strong> (str) - message associated with the command</li>
     </ul></dd>
     <dt>Returns: str</dt>
         <dd>&quot;state withe the message 'Actual word count is 
@@ -396,7 +408,7 @@ unt, &quot;karma&quot;: cmd_karma,}">{&quot;SHUTDOWN&quot;: cmd_shutdown, &quot;
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>user</code></strong> - user whose karma is queried</li>
+        <li><strong class="pname"><code>user</code></strong> (str) - user whose karma is queried</li>
     </ul></dd>
     <dt>Returns: state</dt>
         <dd>done state with message '&lt;user&gt; has &lt;number&gt; points 
@@ -422,7 +434,7 @@ unt, &quot;karma&quot;: cmd_karma,}">{&quot;SHUTDOWN&quot;: cmd_shutdown, &quot;
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>msg</code></strong> - message to be parsed @return next state with the original message</li>
+        <li><strong class="pname"><code>msg</code></strong> (str @return next state with the original message) - message to be parsed</li>
     </ul></dd>
     <dt>Returns: state</dt>
   </dl>
@@ -447,12 +459,12 @@ unt, &quot;karma&quot;: cmd_karma,}">{&quot;SHUTDOWN&quot;: cmd_shutdown, &quot;
   is valid, returns either done state or next state with appropriate 
   message.</p>
   <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>msg</code></strong> (str) - message to be filtered</li>
+    </ul></dd>
     <dt>Returns: state</dt>
         <dd>done state if the information is done parsing</dd>
-    <dt>Raises:</dt>
-    <dd><ul class="nomargin-top">
-        <li><code><strong class='fraise'>Exception</strong></code> - in case that change_karma return other than done or next state</li>
-    </ul></dd>
   </dl>
 </td></tr></table>
 </div>
@@ -463,14 +475,14 @@ unt, &quot;karma&quot;: cmd_karma,}">{&quot;SHUTDOWN&quot;: cmd_shutdown, &quot;
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">read</span>()</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">read</span>(<span class="sig-arg">read_function</span>=<span class="sig-default">&lt;built-in function raw_input&gt;</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="ircbot-pysrc.html#read">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
-  <p>Read input and return it.</p>
+  <p>Reads input and return it.</p>
   <dl class="fields">
     <dt>Returns: str</dt>
         <dd>read data</dd>
@@ -484,7 +496,8 @@ unt, &quot;karma&quot;: cmd_karma,}">{&quot;SHUTDOWN&quot;: cmd_shutdown, &quot;
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">write</span>(<span class="sig-arg">arg</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">write</span>(<span class="sig-arg">arg</span>,
+        <span class="sig-arg">write_function</span>=<span class="sig-default">&lt;built-in function print&gt;</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="ircbot-pysrc.html#write">source&nbsp;code</a></span>&nbsp;
@@ -533,8 +546,17 @@ unt, &quot;karma&quot;: cmd_karma,}">{&quot;SHUTDOWN&quot;: cmd_shutdown, &quot;
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr bgcolor="#70b0f0" class="table-header">
-  <td align="left" colspan="2" class="table-header">
-    <span class="table-header">Variables Details</span></td>
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Variables Details</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-VariablesDetails"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
 </tr>
 </table>
 <a name="COMMANDS"></a>
@@ -580,7 +602,7 @@ unt, &quot;karma&quot;: cmd_karma,}
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Thu Nov 01 12:29:41 2012
+    Generated by Epydoc 3.0.1 on Thu Dec 13 02:48:03 2012
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

@@ -6,18 +6,19 @@ that can be interrupted with EOF keystroke or interrupt keystroke. Bot is
 capable of handling commands and filters.
 
 @author: Marek Osvald
-@version: 2012.1101
+@version: 2012.1210
 @since: 2012.0921
 
 @undocumented: __package__
 """
-
+from __future__ import print_function
 import re
 import state
 
+
 KARMA = {} #: Global dictionary for storing users' karma
 
-def cmd_shutdown(msg):
+def cmd_shutdown(msg = None):
 	"""
 	Raises SystemExit exception.
 
@@ -28,6 +29,7 @@ def cmd_shutdown(msg):
 	"""
 	raise SystemExit
 
+
 def cmd_calc(exp):
 	"""
 	Calculates mathematical expression and returns a state with the result.
@@ -36,6 +38,9 @@ def cmd_calc(exp):
 	@return: result of the expression
 	@rtype: state
 	"""
+	if exp == None:
+		return state.next(exp)
+
 	pattern = "\(?\-?\d*.?\d+(\s*[\+\-\*\/]\(*\s*\d*.?\d+\)*)*\)?"
 
 	if re.match(pattern, exp):
@@ -46,7 +51,8 @@ def cmd_calc(exp):
 
 	return state.next(exp) # exp contains non-mathematical symbols
 
-def cmd_word_count(msg):
+
+def cmd_word_count(msg = None):
 	"""
 	Returns the number of received words so far.
 
@@ -56,6 +62,7 @@ def cmd_word_count(msg):
 	@rtype: str
 	"""
 	return state.done("Actual word count is " + str(WORDCOUNT) + " words.")
+
 
 def cmd_karma(user):
 	"""
@@ -81,6 +88,7 @@ COMMANDS = {
 
 WORDCOUNT = 0 #: Global variable for storing the number of received words
 
+
 def f_word_count(msg):
 	"""
 	Filter that adds the number of words in processed message.
@@ -94,6 +102,7 @@ def f_word_count(msg):
 	WORDCOUNT += len(msg.split(" "))
 	return state.next(msg)
 
+
 def f_karma(msg):
 	"""
 	Checks the message for sequence 'something++' and 'something--', if found,
@@ -104,65 +113,43 @@ def f_karma(msg):
 	@type msg: str
 	@return: done state if the information is done parsing
 	@rtype: state
-	@raise Exception: in case that change_karma return other than done or next
-	state
 	"""
 
 	pattern = "\S+(\+{2}|\-{2})"
 	if re.match(pattern, msg):
-		length = len(msg)
-		user = msg[0:length-2]
+		user = msg[:-2]
 		action = msg[-2:]
-		ret = change_karma(user + " " + action)
 
-		if state.is_done(ret):
-			return ret
-		elif state.is_next(ret):
-			return state.next(msg)
+		changes = { "++": "increased", "--": "decreased" }
+
+		KARMA.setdefault(user, 0)
+
+		if action == "++":
+			KARMA[user] += 1
+		elif action == "--":
+			KARMA[user] -= 1
 		else:
-			raise Exception('Illegal state of change_karma command.')
-	else:
-		return state.next(msg)
+			return state.next(msg)
+
+		if KARMA[user] == 0:
+			del KARMA[user]
+
+		return state.done(user + "'s karma was " + changes[action] + " by 1.")
 
 FILTERS = [f_word_count, f_karma] #: Global array for storing the filters
 
-def change_karma(msg, increase = True):
+
+def read(read_function = raw_input):
 	"""
-	Changes users karma by one.
-	"""
-
-	try:
-		msg, action = msg.split(" ", 1)
-	except ValueError:
-		return state.next(msg)
-
-	KARMA.setdefault(msg, 0)
-
-	if action == "++":
-		KARMA[msg] += 1
-		log = msg + "'s karma was increased by 1."
-	elif action == "--":
-		KARMA[msg] -= 1
-		log = msg + "'s karma was decreased by 1."
-	else:
-		return state.next(msg)
-
-	if KARMA[msg] == 0:
-		del KARMA[msg]
-
-	return state.done(log)
-
-def read():
-	"""
-	Read input and return it.
+	Reads input and return it.
 
 	@return: read data
 	@rtype: str
 	"""
-	input = raw_input()
-	return input
+	return read_function()
 
-def write(arg):
+
+def write(arg, write_function = print):
 	"""
 	Write (send) argument to output.
 
@@ -170,7 +157,8 @@ def write(arg):
 	@return: None
 	@rtype: None
 	"""
-	print(arg)
+	return write_function(arg)
+
 
 def parse(msg):
 	"""
@@ -194,7 +182,7 @@ def parse(msg):
 		elif state.is_next(ret):
 			pass
 		else:
-			raise Exception('Illegal state of command.')
+			raise Exception("Illegal state of command.")
 
 	for filter in FILTERS:
 		ret = filter(msg)

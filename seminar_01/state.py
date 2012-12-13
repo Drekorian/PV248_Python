@@ -1,20 +1,20 @@
+#!/usr/bin/python
+
 """
 This module describes processing states for the main process queue.
 
 @author: Daniel Mach
 @author: Martin Sivak
 @author: Marek Osvald
-@version: 2012.1101
+@version: 2012.1213
 @since: 2012.0921
 
-@undocumented: __package__, object.__new__
+@undocumented: __package__
 """
 
 class state(object):
 	"""
 	Class representing common parsing state.
-
-	@undocumented: __new__
 	"""
 	def __init__(self, value = None):
 		"""
@@ -48,7 +48,7 @@ def is_done(o):
 	"""
 	Returns True if the state is done, False otherwise.
 
-	@param o: state to check
+	@param o: object to check
 	@type o: object
 	@return: True if the state is done, False otherwise
 	@rtype: bool
@@ -59,7 +59,7 @@ def is_next(o):
 	"""
 	Returns True if the state is next, False otherwise.
 
-	@param o: state to check
+	@param o: object to check
 	@type o: object
 	@return: True if the state is next, False otherwise
 	@rtype: bool
@@ -70,7 +70,7 @@ def is_replace(o):
 	"""
 	Returns True if the state is replace, False otherwise.
 
-	@param o: state to check
+	@param o: object to check
 	@type o: object
 	@return: True if the state is replace, False otherwise
 	@rtype: bool
