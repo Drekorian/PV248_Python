@@ -1,0 +1,17 @@
+h1. Description
+
+These are the files containing source code assigned as a homework for the Python class taught by Red Hat and Masaryk University in Brno, Czech Republic.
+
+h1. Seminars
+
+h2. Seminar one.
+
+The bot now:
+
+* parses the messages
+* handles correctly @Ctrl+C@ and @Ctrl+D@ / @Ctrl+Z@ keystrokes
+* allows
+* can handle various commands and filters
+* implements @shutdown@, @calculator@, @word-count@ and @karma@ commands
+* implements @word-count@ and @karma@ filters
+* has its functionality tested via unit tests
