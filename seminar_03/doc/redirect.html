@@ -1,0 +1,38 @@
+<html><head><title>Epydoc Redirect Page</title>
+<meta http-equiv="cache-control" content="no-cache" />
+<meta http-equiv="expires" content="0" />
+<meta http-equiv="pragma" content="no-cache" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+<!--
+var pages = ["interface.IRCBotTelnetInterface-c", "interface.IRCBotShellInterface-c", "mock.mock.NonCallableMagicMock-c", "exceptions.AssertionError-c", "interface.IRCBotInterface-c", "mock.disk.DiskIO.TestFile-c", "mock.mock.NonCallableMock-c", "mock.mock._SentinelObject-c", "mock.mock.CallableMixin-c", "mock.mock.OldStyleClass-c", "plugins.local_logging-m", "mock.disk.DiskIO.Link-c", "mock.mock._patch_dict-c", "plugins.state.replace-c", "exceptions.Exception-c", "mock.disk.DiskIO.Dir-c", "mock.mock.MagicMixin-c", "mock.mock.MagicProxy-c", "mock.mock._SpecState-c", "mock.mock.MagicMock-c", "mock.mock._CallList-c", "mock.mock._Sentinel-c", "plugins.state.state-c", "plugins.calculator-m", "mock.mock._slotted-c", "plugins.state.done-c", "plugins.state.next-c", "plugins.wordcount-m", "plugins.shutdown-m", "mock.disk.DiskIO-c", "mock.mock._patch-c", "mock.mock._Call-c", "mock.mock.Base-c", "mock.mock.Mock-c", "mock.mock._ANY-c", "plugins.karma-m", "plugins.state-m", "ircbot.IrcBot-c", "mock.TestCase-c", "interface-m", "mock.disk-m", "mock.mock-m", "plugins-m", "ircbot-m", "mock-m", "int-c", "str-c"];
+var dottedName = get_anchor();
+if (dottedName) {
+    var target = redirect_url(dottedName);
+    if (target) window.location.replace(target);
+}
+// -->
+</script>
+
+<h3>Epydoc Auto-redirect page</h3>
+
+<p>When javascript is enabled, this page will redirect URLs of
+the form <tt>redirect.html#<i>dotted.name</i></tt> to the
+documentation for the object with the given fully-qualified
+dotted name.</p>
+<p><a id="message"> &nbsp; </a></p>
+
+<script type="text/javascript">
+<!--
+if (dottedName) {
+    var msg = document.getElementById("message");
+    msg.innerHTML = "No documentation found for <tt>"+
+                    dottedName+"</tt>";
+}
+// -->
+</script>
+
+</body>
+</html>

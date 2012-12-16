@@ -24,3 +24,12 @@ The bot now does everything from seminar one and:
 * has well defined object structure
 * logs all messages locally to a file with a timestamp
 * has new set of test for the new functionalities
+
+h2. Seminar three.
+
+The bot now does everything from seminars one and two and:
+
+* allows now both shell (dummy) interface and telnet interface
+* commands and filters are now divided into modules
+* a new set of tests has been written
+* the network interface is tested via Red Hat mock module

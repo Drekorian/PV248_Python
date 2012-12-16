@@ -213,7 +213,7 @@ class IrcBot(object):
 		"karma":      cmd_karma,
 		} #: Global dictionary for storing commands
 
-	FILTERS = [f_logging, f_word_count, f_karma, f_logging] #: Array for storing of the filters
+	FILTERS = [f_logging, f_word_count, f_karma] #: Array for storing of the filters
 
 	def __init__(self, interface):
 		"""
