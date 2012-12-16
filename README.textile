@@ -15,3 +15,12 @@ The bot now:
 * implements @shutdown@, @calculator@, @word-count@ and @karma@ commands
 * implements @word-count@ and @karma@ filters
 * has its functionality tested via unit tests
+
+h2. Seminar two.
+
+The bot now does everything from seminar one and:
+
+* handles correctly karma changes in the middle of line and multiple karma changes
+* has well defined object structure
+* logs all messages locally to a file with a timestamp
+* has new set of test for the new functionalities

@@ -7,11 +7,12 @@ capable of handling commands and filters.
 
 @author: Marek Osvald
 @version: 2012.1214
-@since: 2012.0921
+@since: 2012.0510
 
 @undocumented: __package__
 """
 from __future__ import print_function
+import logging
 import re
 import state
 import sys
@@ -92,14 +93,6 @@ def cmd_karma(user):
 	return state.done("'%s' has %d points of karma." % (user, KARMA[user]))
 
 
-COMMANDS = {
-	"SHUTDOWN":   cmd_shutdown,
-	"calc":       cmd_calc,
-	"word-count": cmd_word_count,
-	"karma":      cmd_karma,
-} #: Global dictionary for storing commands
-
-
 WORDCOUNT = 0 #: Global variable for storing the number of received words
 
 
@@ -132,105 +125,157 @@ def f_karma(msg):
 	"""
 	global KARMA
 
-	msg = msg.strip().lower()
+	for exp in msg.split():
+		exp = exp.lower()
 
-	if msg == "c++":
-		return state.next(msg)
+		if exp == "c++":
+			continue
 
-	if msg.endswith("++") or msg.endswith("--"):
-		user = msg[:-2].lower()
-		action = msg[-2:]
+		if exp.endswith("++") or msg.endswith("--"):
+			user = exp[:-2].lower()
+			action = exp[-2:]
 
-		if user == "":
-			return state.next(msg)
+			if user == "":
+				continue
 
-		changes = { "++": "increased", "--": "decreased" }
+			KARMA.setdefault(user, 0)
 
-		KARMA.setdefault(user, 0)
+			if action == "++":
+				KARMA[user] += 1
+			else:
+				KARMA[user] -= 1
 
-		if action == "++":
-			KARMA[user] += 1
-		else:
-			KARMA[user] -= 1
+			if KARMA[user] == 0:
+				del KARMA[user]
 
-		if KARMA[user] == 0:
-			del KARMA[user]
-
-		return state.done(user + "'s karma was " + changes[action] + " by 1.")
-
-FILTERS = [f_word_count, f_karma] #: Global array for storing the filters
+	return state.next(msg)
 
 
-def read(read_function = raw_input):
+def f_logging(msg, logfile = "ircbot.log"):
 	"""
-	Reads input and returns it.
+	Logs a message.
 
-	@param read_function: function to use for input (mainly for testing purposes
-	)
-	@type read_function: function
-	@return: read data
-	@rtype: str
-	"""
-	return read_function("> ")
-
-
-def write(arg, write_function = print):
-	"""
-	Write (send) argument to output.
-
-	@param arg: text to be written to the output
-	@type arg: str
-	@param write_function: function to user for writing (mainly for testing
-	purposes)
-	@type write_function: function
-	@return: None
-	@rtype: None
-	"""
-	return write_function(arg)
-
-
-def parse(msg):
-	"""
-	Parses given input.
-
-	@param msg: input message to parse
+	@param msg: message to log
 	@type msg: str
-	@return: return message processed with associated commands and filters
-	@rtype: str
+	@return: next state with the original message
+	@rtype: state.next
 	"""
-	try:
-		cmd, args = msg.split(" ", 1)
-	except ValueError:
-		cmd, args = msg.rstrip(), ""
+	logging.basicConfig(
+		format = "%(asctime)s  %(message)s",
+		datefmt = "%d.%m.%Y %H:%M:%S",
+		filename = logfile,
+		level = logging.DEBUG
+	)
+	logging.info(msg)
 
-	if cmd in COMMANDS:
-		ret = COMMANDS[cmd](args)
+	return state.next(msg)
 
-		if state.is_done(ret):
-			return ret.value
-		elif state.is_next(ret):
-			pass
-		else:
-			raise Exception("Illegal state of command.")
 
-	for filter in FILTERS:
-		ret = filter(msg)
+class BotInterface(object):
+	"""
+	Class representing general I/O interface for an IRC bot.
+	"""
+	def read(self, read_function = raw_input):
+		"""
+		Reads input and returns it.
 
-		if state.is_done(ret):
-			return ret.value
+		@param read_function: function to use for input (mainly for testing
+		purposes)
+		@type read_function: function
+		@return: read data
+		@rtype: str
+		"""
+		return read_function("> ")
 
-		if state.is_replace(ret):
-			msg = ret.value
+	def write(self, arg, write_function = print):
+		"""
+		Write (send) argument to output.
 
-	return msg
+		@param arg: text to be written to the output
+		@type arg: str
+		@param write_function: function to user for writing (mainly for testing
+		purposes)
+		@type write_function: function
+		@return: None
+		@rtype: None
+		"""
+		return write_function(arg)
+
+
+class IrcBot(object):
+	"""
+	Class representing the bot with a local shell interface.
+	"""
+	COMMANDS = {
+		"SHUTDOWN":   cmd_shutdown,
+		"calc":       cmd_calc,
+		"word-count": cmd_word_count,
+		"karma":      cmd_karma,
+		} #: Global dictionary for storing commands
+
+	FILTERS = [f_logging, f_word_count, f_karma, f_logging] #: Array for storing of the filters
+
+	def __init__(self, interface):
+		"""
+		Parametric constructor. Specifies an interface for the bot.
+
+		@param interface: implementation of the I/O interface
+		@type interface: object
+		"""
+		self._if = interface
+
+	def parse(self, msg):
+		"""
+		Parses given input.
+
+		@param msg: input message to parse
+		@type msg: str
+		@return: return message processed with associated commands and filters
+		@rtype: str
+		"""
+		try:
+			cmd, args = msg.split(" ", 1)
+		except ValueError:
+			cmd, args = msg.rstrip(), ""
+
+		if cmd in self.COMMANDS:
+			ret = self.COMMANDS[cmd](args)
+
+			if state.is_done(ret):
+				return ret.value
+			elif state.is_next(ret):
+				pass
+			else:
+				raise Exception("Illegal state of command.")
+
+		for filter in self.FILTERS:
+			ret = filter(msg)
+
+			if state.is_done(ret):
+				return ret.value
+
+			if state.is_replace(ret):
+				msg = ret.value
+
+		return msg
+
+	def run(self):
+		"""
+		Runs an endless loop that creates the gist of the bot.
+		"""
+		while True:
+			msg = self._if.read()
+			msg = self.parse(msg)
+			if msg:
+				self._if.write(msg)
 
 
 if __name__ == "__main__":
-	while True:
-		try:
-			msg = read()
-			write(parse(msg))
+	ifc = BotInterface()
+	bot = IrcBot(ifc)
 
-		except (KeyboardInterrupt, EOFError, SystemExit):
-			print("Shutting down the bot")
-			sys.exit(0)
+	try:
+		bot.run()
+	except (KeyboardInterrupt, EOFError, SystemExit):
+		print("Shutting down the bot")
+		sys.exit(0)

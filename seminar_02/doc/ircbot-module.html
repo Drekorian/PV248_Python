@@ -64,9 +64,43 @@
         2012.1214
       </p>
       <p><strong>Since:</strong>
-        2012.0921
+        2012.0510
       </p>
-</div><!-- ==================== FUNCTIONS ==================== -->
+</div><!-- ==================== CLASSES ==================== -->
+<a name="section-Classes"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td colspan="2" class="table-header">
+    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+      <tr valign="top">
+        <td align="left"><span class="table-header">Classes</span></td>
+        <td align="right" valign="top"
+         ><span class="options">[<a href="#section-Classes"
+         class="privatelink" onclick="toggle_private();"
+         >hide private</a>]</span></td>
+      </tr>
+    </table>
+  </td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ircbot.BotInterface-class.html" class="summary-name">BotInterface</a><br />
+      Class representing general I/O interface for an IRC bot.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="ircbot.IrcBot-class.html" class="summary-name">IrcBot</a><br />
+      Class representing the bot with a local shell interface.
+    </td>
+  </tr>
+</table>
+<!-- ==================== FUNCTIONS ==================== -->
 <a name="section-Functions"></a>
 <table class="summary" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
@@ -189,49 +223,15 @@
   </tr>
 <tr>
     <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">str</span>
+      <span class="summary-type">state.next</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="ircbot-module.html#read" class="summary-sig-name">read</a>(<span class="summary-sig-arg">read_function</span>=<span class="summary-sig-default">&lt;built-in function raw_input&gt;</span>)</span><br />
-      Reads input and returns it.</td>
+          <td><span class="summary-sig"><a href="ircbot-module.html#f_logging" class="summary-sig-name">f_logging</a>(<span class="summary-sig-arg">msg</span>,
+        <span class="summary-sig-arg">logfile</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">ircbot.log</code><code class="variable-quote">'</code></span>)</span><br />
+      Logs a message.</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="ircbot-pysrc.html#read">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">None</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="ircbot-module.html#write" class="summary-sig-name">write</a>(<span class="summary-sig-arg">arg</span>,
-        <span class="summary-sig-arg">write_function</span>=<span class="summary-sig-default">&lt;built-in function print&gt;</span>)</span><br />
-      Write (send) argument to output.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="ircbot-pysrc.html#write">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">str</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="ircbot-module.html#parse" class="summary-sig-name">parse</a>(<span class="summary-sig-arg">msg</span>)</span><br />
-      Parses given input.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="ircbot-pysrc.html#parse">source&nbsp;code</a></span>
+            <span class="codelink"><a href="ircbot-pysrc.html#f_logging">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -269,25 +269,8 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a href="ircbot-module.html#COMMANDS" class="summary-name">COMMANDS</a> = <code title="{&quot;SHUTDOWN&quot;: cmd_shutdown, &quot;calc&quot;: cmd_calc, &quot;word-count&quot;: cmd_word_co\
-unt, &quot;karma&quot;: cmd_karma,}">{&quot;SHUTDOWN&quot;: cmd_shutdown, &quot;calc&quot;: cmd_calc, &quot;word-<code class="variable-ellipsis">...</code></code><br />
-      Global dictionary for storing commands
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
         <a name="WORDCOUNT"></a><span class="summary-name">WORDCOUNT</span> = <code title="0">0</code><br />
       Global variable for storing the number of received words
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="FILTERS"></a><span class="summary-name">FILTERS</span> = <code title="[f_word_count, f_karma]">[f_word_count, f_karma]</code><br />
-      Global array for storing the filters
     </td>
   </tr>
 </table>
@@ -470,118 +453,29 @@ unt, &quot;karma&quot;: cmd_karma,}">{&quot;SHUTDOWN&quot;: cmd_shutdown, &quot;
   </dl>
 </td></tr></table>
 </div>
-<a name="read"></a>
+<a name="f_logging"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">read</span>(<span class="sig-arg">read_function</span>=<span class="sig-default">&lt;built-in function raw_input&gt;</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">f_logging</span>(<span class="sig-arg">msg</span>,
+        <span class="sig-arg">logfile</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">ircbot.log</code><code class="variable-quote">'</code></span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="ircbot-pysrc.html#read">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="ircbot-pysrc.html#f_logging">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
-  <p>Reads input and returns it.</p>
+  <p>Logs a message.</p>
   <dl class="fields">
     <dt>Parameters:</dt>
     <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>read_function</code></strong> (function) - function to use for input (mainly for testing purposes )</li>
+        <li><strong class="pname"><code>msg</code></strong> (str) - message to log</li>
     </ul></dd>
-    <dt>Returns: str</dt>
-        <dd>read data</dd>
-  </dl>
-</td></tr></table>
-</div>
-<a name="write"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">write</span>(<span class="sig-arg">arg</span>,
-        <span class="sig-arg">write_function</span>=<span class="sig-default">&lt;built-in function print&gt;</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="ircbot-pysrc.html#write">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  <p>Write (send) argument to output.</p>
-  <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>arg</code></strong> (str) - text to be written to the output</li>
-        <li><strong class="pname"><code>write_function</code></strong> (function) - function to user for writing (mainly for testing purposes)</li>
-    </ul></dd>
-    <dt>Returns: None</dt>
-        <dd>None</dd>
-  </dl>
-</td></tr></table>
-</div>
-<a name="parse"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">parse</span>(<span class="sig-arg">msg</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="ircbot-pysrc.html#parse">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  <p>Parses given input.</p>
-  <dl class="fields">
-    <dt>Parameters:</dt>
-    <dd><ul class="nomargin-top">
-        <li><strong class="pname"><code>msg</code></strong> (str) - input message to parse</li>
-    </ul></dd>
-    <dt>Returns: str</dt>
-        <dd>return message processed with associated commands and filters</dd>
-  </dl>
-</td></tr></table>
-</div>
-<br />
-<!-- ==================== VARIABLES DETAILS ==================== -->
-<a name="section-VariablesDetails"></a>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr bgcolor="#70b0f0" class="table-header">
-  <td colspan="2" class="table-header">
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
-      <tr valign="top">
-        <td align="left"><span class="table-header">Variables Details</span></td>
-        <td align="right" valign="top"
-         ><span class="options">[<a href="#section-VariablesDetails"
-         class="privatelink" onclick="toggle_private();"
-         >hide private</a>]</span></td>
-      </tr>
-    </table>
-  </td>
-</tr>
-</table>
-<a name="COMMANDS"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <h3 class="epydoc">COMMANDS</h3>
-  <p>Global dictionary for storing commands</p>
-  <dl class="fields">
-  </dl>
-  <dl class="fields">
-    <dt>Value:</dt>
-      <dd><table><tr><td><pre class="variable">
-{&quot;SHUTDOWN&quot;: cmd_shutdown, &quot;calc&quot;: cmd_calc, &quot;word-count&quot;: cmd_word_co<span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
-unt, &quot;karma&quot;: cmd_karma,}
-</pre></td></tr></table>
-</dd>
+    <dt>Returns: state.next</dt>
+        <dd>next state with the original message</dd>
   </dl>
 </td></tr></table>
 </div>
@@ -609,7 +503,7 @@ unt, &quot;karma&quot;: cmd_karma,}
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Fri Dec 14 22:56:53 2012
+    Generated by Epydoc 3.0.1 on Sun Dec 16 17:29:36 2012
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

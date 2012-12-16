@@ -1,8 +1,8 @@
 #!/usr/bin/python
 import unittest
+import re
 import ircbot
 import state
-import copy
 
 
 class TestCmdShutdown(unittest.TestCase):
@@ -149,11 +149,11 @@ class TestFKarma(unittest.TestCase):
 		ircbot.KARMA = {}
 
 	def test_plus_plus(self):
-		self.assertTrue(state.is_done(ircbot.f_karma('foo++')))
+		self.assertTrue(state.is_next(ircbot.f_karma('foo++')))
 		self.assertEqual(ircbot.KARMA['foo'], 1)
 
 	def test_minus_minus(self):
-		self.assertTrue(state.is_done(ircbot.f_karma('bar--')))
+		self.assertTrue(state.is_next(ircbot.f_karma('bar--')))
 		self.assertEqual(ircbot.KARMA['bar'], -1)
 
 	def test_delete_zero(self):
@@ -164,35 +164,52 @@ class TestFKarma(unittest.TestCase):
 		self.assertFalse(ircbot.KARMA.has_key("baz"))
 
 
-class TestRead(unittest.TestCase):
+class TestFLogging(unittest.TestCase):
 	def test_default(self):
-		self.assertEqual(ircbot.read(lambda(prompt): "foo"), "foo")
+		log_name = "test.log"
+		log_file = open(log_name, "w")
+		log_file.close()
+		
+		ircbot.f_logging("foo", log_name)
+
+		log_file = open(log_name, "r")
+		log_data = log_file.read()
+		log_file.close()
+
+		pattern = "\d{2}\.\d{2}\.\d{4} \d{2}:\d{2}:\d{2}  foo"
+
+		if not(re.match(pattern, log_data)):
+			self.fail()
 
 
-class TestWrite(unittest.TestCase):
-	def test_default(self):
-		self.assertEqual(ircbot.write("foo"), None)
-
-	def test_dummy(self):
-		self.assertEqual(ircbot.write("foo", lambda(arg): arg), "foo")
-
-
-class TestParse(unittest.TestCase):
+class TestBotInterface(unittest.TestCase):
 	def setUp(self):
-		self._commands = copy.copy(ircbot.COMMANDS)
-		self._filters = copy.copy(ircbot.FILTERS)
+		self._ifc = ircbot.BotInterface()
+		self._bot = ircbot.IrcBot(self._ifc)
 
-		ircbot.COMMANDS = {
+	def test_read(self):
+		self.assertEqual(self._bot._if.read(lambda(prompt): "foo"), "foo")
+
+	def test_write_default(self):
+		self.assertEqual(self._bot._if.write("foo"), None)
+
+	def test_write_dummy(self):
+		self.assertEqual(self._bot._if.write("foo", lambda(arg): arg), "foo")
+
+
+class TestIrcBot(unittest.TestCase):
+	def setUp(self):
+		self._bot = ircbot.IrcBot(ircbot.BotInterface())
+
+		self._bot.COMMANDS = {
 			'hello': self.cmd_say_hello
 		}
 
-		ircbot.FILTERS = [self.f_replace_secret_with_hashes]
-		ircbot.KARMA = {}
+		self._bot.FILTERS = [self.f_replace_secret_with_hashes]
+		self._bot.KARMA = {}
 
 	def tearDown(self):
-		ircbot.COMMANDS = self._commands
-		ircbot.FILTERS = self._filters
-		ircbot.KARMA = {}
+		self.bot = ircbot.IrcBot(ircbot.BotInterface())
 
 	def cmd_say_hello(self, msg = None):
 		return state.done("hello to you too")
@@ -205,15 +222,15 @@ class TestParse(unittest.TestCase):
 
 		return state.next(msg)
 
-	def test_cmd_say_hello(self):
-		self.assertEqual(ircbot.parse("hello"), "hello to you too")
+	def test_parse_hello(self):
+		self.assertEqual(self._bot.parse("hello"), "hello to you too")
 
-	def test_f_replace_secret_with_hashes(self):
-		self.assertEqual(ircbot.parse("the secret is secret"), "the ###### is ######")
-		self.assertEqual(ircbot.parse("foo bar"), "foo bar")
+	def test_parse_secret(self):
+		self.assertEqual(self._bot.parse("the secret is secret"), "the ###### is ######")
+		self.assertEqual(self._bot.parse("foo bar"), "foo bar")
 
-	def test_no_command_no_filter(self):
-		self.assertEqual(ircbot.parse("foo"), "foo")
+	def test_parse_no_command_no_filter(self):
+		self.assertEqual(self._bot.parse("foo"), "foo")
 
 
 class TestIsDone(unittest.TestCase):

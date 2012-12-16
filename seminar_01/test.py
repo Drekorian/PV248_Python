@@ -14,7 +14,7 @@ class TestParseCommand(unittest.TestCase):
         raise SystemExit
 
     def c_echo(self, t):
-        return state.done("echo "+t)
+        return state.done("echo " + t)
 
     def c_unknown(self, t):
         return state.next()
@@ -57,7 +57,7 @@ class TestParseHooks(unittest.TestCase):
         raise SystemExit
 
     def c_echo(self, t):
-        return state.done("echo "+t)
+        return state.done("echo " + t)
 
     def h_count(self, t):
         return state.done("%d" % len(t))
