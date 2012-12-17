@@ -33,3 +33,11 @@ The bot now does everything from seminars one and two and:
 * commands and filters are now divided into modules
 * a new set of tests has been written
 * the network interface is tested via Red Hat mock module
+
+h2. Seminar four.
+
+The bot now does everything from seminars one, two and three and:
+
+* has a special thread that delays the message to the user
+* has a special thread that parses the title of webpage when given it's URL
+* both are hardwired into the bot as a command and filter respectively
