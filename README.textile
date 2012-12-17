@@ -41,3 +41,11 @@ The bot now does everything from seminars one, two and three and:
 * has a special thread that delays the message to the user
 * has a special thread that parses the title of webpage when given it's URL
 * both are hardwired into the bot as a command and filter respectively
+
+h2. Seminar five.
+
+The bot now does everything from seminars one, two, three and four and:
+
+* parses configuration options from both command line and configuration file(s) passed via command line as arguments
+
+h2. Colloquium
