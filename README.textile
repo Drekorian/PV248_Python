@@ -49,3 +49,9 @@ The bot now does everything from seminars one, two, three and four and:
 * parses configuration options from both command line and configuration file(s) passed via command line as arguments
 
 h2. Colloquium
+
+The bot now does everything from seminars one, two, three, four and five and:
+
+* has a standalone configurable remote logging server
+* can connect to that server and the server logs every message into a gzipped file
+* the bot presenece is not crucial to the bot
